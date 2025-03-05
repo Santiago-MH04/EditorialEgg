@@ -1,13 +1,12 @@
 package com.egg.biblioteca.entidades;
 
-
+import java.util.Objects;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 
 
 @Entity
@@ -42,6 +41,15 @@ public class Autor {
         return "Autor [id=" + id + ", nombre=" + nombre + "]";
     }
 
-    
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Autor autor = (Autor) o;
+        return Objects.equals(id, autor.id) && Objects.equals(nombre, autor.nombre);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre);
+    }
 }

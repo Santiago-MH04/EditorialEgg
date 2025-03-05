@@ -10,11 +10,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LibroRepositorio extends JpaRepository<Libro, Long>{
-    // método para buscar libro por título
-    @Query("SELECT l FROM Libro l WHERE l.titulo = :titulo")
-    public Libro buscarPorTitulo(@Param("titulo") String titulo);
+        //Método para buscar libro por título
+    /*@Query("SELECT l FROM Libro l WHERE l.titulo = :titulo")*/
+    public Libro findByTitulo(String titulo);
     
-    // método para buscar libro por nombre de autor
-    @Query("SELECT l FROM Libro l WHERE l.autor.nombre = :nombre")
-    public List<Libro> buscarPorAutor(@Param ("nombre") String nombre); 
+        //Método para buscar libro por nombre de autor
+    @Query("SELECT l FROM Libro l WHERE l.autor.nombre = :autor")
+    public List<Libro> findByAutor(String autor);
+        //Método para buscar libro por nombre de editorial
+    @Query("SELECT l FROM Libro l WHERE l.editorial.nombre = :nombre")
+    public List<Libro> findByEditorial(@Param(value = "nombre") String editorial);
 }

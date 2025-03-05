@@ -1,6 +1,7 @@
 package com.egg.biblioteca.entidades;
 
 import java.util.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -84,6 +85,10 @@ public class Libro {
                 + ", autor=" + autor + ", editorial=" + editorial + "]";
     }
 
-
-    
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Libro libro = (Libro) o;
+        return Objects.equals(isbn, libro.isbn) && Objects.equals(titulo, libro.titulo) && Objects.equals(autor, libro.autor) && Objects.equals(editorial, libro.editorial);
+    }
 }

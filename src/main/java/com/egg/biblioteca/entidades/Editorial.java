@@ -1,5 +1,6 @@
 package com.egg.biblioteca.entidades;
 
+import java.util.Objects;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -10,7 +11,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Editorial {
-@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
@@ -41,7 +42,15 @@ public class Editorial {
         return "Editorial [id=" + id + ", nombre=" + nombre + "]";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Editorial editorial = (Editorial) o;
+        return Objects.equals(id, editorial.id) && Objects.equals(nombre, editorial.nombre);
+    }
 
-
-    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre);
+    }
 }
